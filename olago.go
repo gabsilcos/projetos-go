@@ -1,7 +1,8 @@
 package main
 
-import fmt
+import "fmt"
 
-func main(){
-	fmt.println("Golando agora! :D")
+func main() {
+	fmt.Println("Golando agora! :D")
+	fmt.Printf("teste de string: %s\n", "testado")
 }
