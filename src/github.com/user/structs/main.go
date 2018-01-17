@@ -2,21 +2,33 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/user/structs/model"
 	"fmt"
+
+	"github.com/user/structs/model"
 )
 
-
-func main(){
+func main() {
 	casa := model.Imovel{} //não é uma expressão, precisa de "{}"
 	casa.Nome = "casa azul"
 	casa.X = 18
 	casa.Y = 25
-	casa.SetValor(60000)
+	if err := casa.SetValor(10000001); err != nil {
+		fmt.Println("[main] Houve um erro na atribuição do valor da casa:", err.Error())
+		if err == model.ErrValorDeImovelMuitoAlto {
+			fmt.Println("Vai roubar a mãe!")
+		}
+		return
+	}
 
-	fmt.Printf("A casa é: %+v\r\n",casa) //%+v printa os nomes E o valor dos campos
-	fmt.Printf("O valor da casa é: %d\r\n",casa.GetValor())
-	objJSON, _ := json.Marshal(casa)
+	fmt.Printf("A casa é: %+v\r\n", casa) //%+v printa os nomes E o valor dos campos
+	fmt.Printf("O valor da casa é: %d\r\n", casa.GetValor())
+	objJSON, err := json.Marshal(casa)
+	//o erro é um ponteiro que aponta pra um ojeto que implementa a interface 'error'
+	if err != nil {
+		fmt.Println("[main] Houve um erro na geração do obj JSON", err.Error())
+		//existe o panic pra tratamento de erros, que mata tudo
+		return
+	}
 	fmt.Println("A casa em JSON: ", string(objJSON))
 }
 
@@ -52,4 +64,4 @@ func main(){
 	casa.Y = 21
 	fmt.Printf("A nova casa é: %+v\r\n",casa) //%+v printa os nomes E o valor dos campos
 }
-*/	
+*/
