@@ -1,5 +1,11 @@
 package main
 
+//go build -o appDaAula
+//GOOS=windows GOARCH=386 go build -o appWindows.exe
+//GOOS=linux GOARCH=386 go build -o appLinux
+//GOOS=darwin GOARCH=amd64 go build -o hello_osx_amd64 hello.go
+//-v github.com/user/structs
+
 import (
 	"encoding/json"
 	"fmt"
@@ -12,7 +18,7 @@ func main() {
 	casa.Nome = "casa azul"
 	casa.X = 18
 	casa.Y = 25
-	if err := casa.SetValor(10000001); err != nil {
+	if err := casa.SetValor(100000); err != nil {
 		fmt.Println("[main] Houve um erro na atribuição do valor da casa:", err.Error())
 		if err == model.ErrValorDeImovelMuitoAlto {
 			fmt.Println("Vai roubar a mãe!")
