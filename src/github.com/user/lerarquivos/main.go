@@ -14,12 +14,14 @@ func main() {
 		return
 	}
 
+	//scanner lê linha-a-alinha
 	//scanner := bufio.NewScanner(arquivo)
 	//for scanner.Scan() {
 	//	linha := scanner.Text()
 	//		fmt.Println("O conteúdo da linha é: ", linha)
 	//	}
 
+	//leitor csv é específico para tratamento de arquivos .csv
 	leitorCsv := csv.NewReader(arquivo)
 	conteudo, err := leitorCsv.ReadAll()
 	if err != nil {
